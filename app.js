@@ -63,25 +63,6 @@ const worldHeritageData = [
         description: "古代エジプトのファラオの墓として建設された巨大な石造建築物。クフ王のピラミッドは、古代世界の七不思議の一つです。"
     },
     {
-        name: "自由の女神像",
-        country: "アメリカ合衆国",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Statue_of_Liberty_7.jpg/640px-Statue_of_Liberty_7.jpg",
-            "https://picsum.photos/640/480?random=6"
-        ],
-        description: "アメリカ合衆国の独立100周年を記念してフランスから贈られた像。自由と民主主義の象徴として知られています。"
-    },
-    {
-        name: "ストーンヘンジ",
-        country: "イギリス",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Stonehenge_from_the_north.jpg/640px-Stonehenge_from_the_north.jpg",
-            "https://i.pinimg.com/originals/7e/3b/74/7e3b74dcd6b4344582315a37381b5413.jpg",
-            "https://picsum.photos/640/480?random=7"
-        ],
-        description: "新石器時代から青銅器時代にかけて建設された巨大な石の建造物。その目的はいまだ謎に包まれていますが、古代の天文観測所や儀式場であったと考えられています。"
-    },
-    {
         name: "グランド・キャニオン",
         country: "アメリカ合衆国",
         imageUrls: [
@@ -122,26 +103,6 @@ const worldHeritageData = [
         description: "シドニーの象徴的な建造物であり、20世紀を代表する建築物の一つ。貝殻のような独特の屋根が特徴で、世界的に有名なコンサートホールです。"
     },
     {
-        name: "古都京都の文化財",
-        country: "日本",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Kinkaku-ji_in_Kyoto.jpg/640px-Kinkaku-ji_in_Kyoto.jpg",
-            "https://www.his-j.com/theme/world-heritage/asia/japan/kansai/kyoto/img/main01.jpg",
-            "https://picsum.photos/640/480?random=12"
-        ],
-        description: "古くから日本の首都として栄えた京都には、金閣寺や清水寺など、数多くの歴史的建造物や庭園が残されています。日本の伝統文化の粋を集めた場所です。"
-    },
-    {
-        name: "シュリー・ランガナータスワーミ寺院",  // インドの代表的な寺院
-        country: "インド",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sri_Ranganathaswamy_Temple_Gopuram.jpg/640px-Sri_Ranganathaswamy_Temple_Gopuram.jpg",
-            "https://tse2.mm.bing.net/th/id/OIP.Dm4QUwLNaDL8onpaafROeQHaFi?r=0&rs=1&pid=ImgDetMain&o=7&rm=3", // 修正されたURL
-            "https://picsum.photos/640/480?random=13"
-        ],
-        description: "インド最大のヒンドゥー教寺院複合体の一つで、その壮大なゴープラム（塔門）と美しい彫刻で知られています。南インドの建築様式を代表する存在です。"
-    },
-    {
         name: "ケルン大聖堂",
         country: "ドイツ",
         imageUrls: [
@@ -150,16 +111,6 @@ const worldHeritageData = [
             "https://picsum.photos/640/480?random=14"
         ],
         description: "ドイツのケルンにあるゴシック様式の大聖堂。その壮麗な建築と、聖遺物を納めるために建設された歴史的背景を持つ、ドイツを代表する建築物です。"
-    },
-    {
-        name: "ポンペイ、エルコラーノおよびトッレ・アヌンツィアータの考古地域",
-        country: "イタリア",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Pompeii_Forum_Vesuvius.jpg/640px-Pompeii_Forum_Vesuvius.jpg",
-            "https://th.bing.com/th/id/R.06e984063f59a017e21b1738b3754475?rik=qtY2AtO87tIsNg&riu=http%3a%2f%2fworldheritage.online%2fwp-content%2fuploads%2f2021%2f03%2fshutterstock_1445345906-1-scaled.jpg&ehk=zO1rhAc%2fFasrWkov3jH0k1CSxbvU2JF0tmgq0%2bstAXY%3d&risl=&pid=ImgRaw&r=0", // 修正されたURL
-            "https://picsum.photos/640/480?random=15"
-        ],
-        description: "西暦79年のヴェスヴィオ火山噴火によって埋没した古代都市ポンペイ。当時のローマ帝国の生活様式がそのまま保存されており、貴重な考古学的資料となっています。"
     },
     {
         name: "イグアス国立公園",
@@ -172,36 +123,6 @@ const worldHeritageData = [
         description: "アルゼンチンとの国境に位置する世界最大級の滝、イグアスの滝を中心とした国立公園。その圧倒的な水量と雄大な自然は圧巻です。"
     },
     {
-        name: "アブ・シンベルからフィラエまでのヌビア遺跡群",
-        country: "エジプト",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Abu_Simbel_Temple_Egypt.jpg/640px-Abu_Simbel_Temple_Egypt.jpg",
-            "https://worldheritage-mania.com/wp-content/uploads/2022/04/shutterstock_1719274903-1024x681.jpg", // 修正されたURL
-            "https://picsum.photos/640/480?random=17"
-        ],
-        description: "ナイル川沿いに点在する古代エジプトの壮大な岩窟神殿群。アスワン・ハイ・ダム建設時に水没の危機に瀕したが、国際的な協力によって移築・保存されました。"
-    },
-    {
-        name: "富士山-信仰の対象と芸術の源泉",
-        country: "日本",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Mount_Fuji_from_Lake_Kawaguchiko%2C_Yamanashi_Prefecture%2C_Japan.jpg/640px-Mount_Fuji_from_Lake_Kawaguchiko%2C_Yamanashi_Prefecture%2C_Japan.jpg",
-            "https://www.yamanashi-kankou.jp/shared/templates/free_rn2022/images/index/nature.jpg",
-            "https://picsum.photos/640/480?random=18"
-        ],
-        description: "日本最高峰の山であり、古くから信仰の対象とされ、多くの芸術作品の題材となってきました。その美しい姿は日本の象徴とされています。"
-    },
-    {
-        name: "エッフェル塔", // エッフェル塔自体は世界遺産ではないが、パリのセーヌ河岸の一部として登録
-        country: "フランス",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Eiffel_Tower_from_Champs_de_Mars%2C_Paris%2C_France.jpg/640px-Eiffel_Tower_from_Champs_de_Mars%2C_Paris%2C_France.jpg",
-            "https://cdn.4travel.jp/img/thumbnails/magazine/article/custom_picture/8749.jpg?1571821699",
-            "https://picsum.photos/640/480?random=19"
-        ],
-        description: "パリの象徴であり、1889年のパリ万国博覧会のために建設された鉄骨構造の塔。セーヌ河岸の世界遺産の一部です。"
-    },
-    {
         name: "サグラダ・ファミリア", // 正式名称は「アントニ・ガウディの作品群」の一部
         country: "スペイン",
         imageUrls: [
@@ -210,16 +131,6 @@ const worldHeritageData = [
             "https://picsum.photos/640/480?random=20"
         ],
         description: "アントニ・ガウディが設計した未完の教会。独特の建築様式と壮大なスケールで知られ、バルセロナの象徴です。"
-    },
-    {
-        name: "ヴェネツィアとその潟",
-        country: "イタリア",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Venice_-_Grand_Canal_and_San_Giorgio_Maggiore.jpg/640px-Venice_-_Grand_Canal_and_San_Giorgio_Maggiore.jpg",
-            "https://www.club-t.com/ct/kanko/guide/images/a_013/a_013_004.jpg",
-            "https://picsum.photos/640/480?random=21"
-        ],
-        description: "運河と橋で結ばれた美しい水の都。独自の歴史と文化、芸術が息づく都市景観は世界中の人々を魅了します。"
     },
     {
         name: "イースター島のラパ・ヌイ国立公園",
