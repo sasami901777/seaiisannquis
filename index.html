@@ -665,6 +665,30 @@
                 questionText.textContent = '問題の生成に失敗しました。';
                 return;
             }
+            function endQuiz() {
+            const scorePercentage = Math.round((correctAnswers / QUIZ_LIMIT) * 100);
+            let message = `🎉 クイズ終了！お疲れ様でした！\n\n`;
+            message += `📊 結果: ${correctAnswers}/${QUIZ_LIMIT}問正解 (${scorePercentage}%)\n\n`;
+            
+            if (scorePercentage >= 90) {
+                message += `🥇 素晴らしい！世界遺産博士ですね！`;
+            } else if (scorePercentage >= 70) {
+                message += `🥈 よくできました！世界遺産通ですね！`;
+            } else if (scorePercentage >= 50) {
+                message += `🥉 まずまずです！もう少し頑張りましょう！`;
+            } else {
+                message += `📚 世界遺産についてもっと学んでみましょう！`;
+            }
+            
+            questionText.textContent = message;
+            heritageImage.src = '';
+            heritageImage.alt = '';
+            choicesArea.innerHTML = '';
+            feedbackMessage.textContent = '';
+            explanationArea.style.display = 'none';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'inline-block';
+        }
 
             questionText.textContent = `第 ${currentQuestionCount} 問: この世界遺産がある国はどこ？`;
             
