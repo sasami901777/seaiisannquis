@@ -528,7 +528,7 @@
             {
                 name: "イグアス国立公園",
                 country: "ブラジル",
-                imageUrl: [
+                imageUrls: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Iguazu_Falls_from_Brazil_side.jpg/640px-Iguazu_Falls_from_Brazil_side.jpg",
 　　　　　　　　　　　"https://th.bing.com/th/id/R.9b07b5050dc1f8c2ad19c2d370f13747?rik=15eZlFxD0VSYEQ&riu=http%3a%2f%2fworldheritage.online%2fwp-content%2fuploads%2f2021%2f11%2fshutterstock_1338447983-1024x683.jpg&ehk=6zBhcxLU%2bw%2bL%2b%2fMPdmp%2fXXRLcBbfMMAOc2z3i9lGnFs%3d&risl=&pid=ImgRaw&r=0",
                     "https://picsum.photos/640/480?random=11"
@@ -538,7 +538,7 @@
             {
                 name: "サグラダ・ファミリア", // 正式名称は「アントニ・ガウディの作品群」の一部
                 country: "スペイン",
-                imageUrl: [
+                imageUrls: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sagrada_Familia_from_the_south_2019_01.jpg/640px-Sagrada_Familia_from_the_south_2019_01.jpg",
                     "https://i2.wp.com/media.thisisgallery.com/wp-content/uploads/2022/10/AdobeStock_384161226-1-scaled.jpeg?resize=2560%2C1709&ssl=1",
                     "https://picsum.photos/640/480?random=12"
@@ -548,7 +548,7 @@
             {
                 name: "イースター島のラパ・ヌイ国立公園",
                 country: "チリ",
-                imageUrl: [
+                imageUrls: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Moai_Rano_Raraku.jpg/640px-Moai_Rano_Raraku.jpg",
                     "https://tvmatome.net/wp-content/uploads/2015/12/moai.jpg",
                     "https://picsum.photos/640/480?random=13"
@@ -665,29 +665,9 @@
                 questionText.textContent = '問題の生成に失敗しました。';
                 return;
             }
-            function endQuiz() {
-            const scorePercentage = Math.round((correctAnswers / QUIZ_LIMIT) * 100);
-            let message = `🎉 クイズ終了！お疲れ様でした！\n\n`;
-            message += `📊 結果: ${correctAnswers}/${QUIZ_LIMIT}問正解 (${scorePercentage}%)\n\n`;
             
-            if (scorePercentage >= 90) {
-                message += `🥇 素晴らしい！世界遺産博士ですね！`;
-            } else if (scorePercentage >= 70) {
-                message += `🥈 よくできました！世界遺産通ですね！`;
-            } else if (scorePercentage >= 50) {
-                message += `🥉 まずまずです！もう少し頑張りましょう！`;
-            } else {
-                message += `📚 世界遺産についてもっと学んでみましょう！`;
-            }
             
-            questionText.textContent = message;
-            heritageImage.src = '';
-            heritageImage.alt = '';
-            choicesArea.innerHTML = '';
-            feedbackMessage.textContent = '';
-            explanationArea.style.display = 'none';
-            nextButton.style.display = 'none';
-            restartButton.style.display = 'inline-block';
+            
         }
 
             questionText.textContent = `第 ${currentQuestionCount} 問: この世界遺産がある国はどこ？`;
@@ -734,9 +714,23 @@
             nextButton.textContent = (currentQuestionCount < QUIZ_LIMIT) ? '次の問題' : 'クイズ終了';
         }
 
-        // クイズを終了
+        // // クイズを終了
         function endQuiz() {
-            questionText.textContent = `クイズ終了！お疲れ様でした！\n正解数: ${correctAnswers}/${QUIZ_LIMIT}`;
+            const scorePercentage = Math.round((correctAnswers / QUIZ_LIMIT) * 100);
+            let message = `🎉 クイズ終了！お疲れ様でした！\n\n`;
+            message += `📊 結果: ${correctAnswers}/${QUIZ_LIMIT}問正解 (${scorePercentage}%)\n\n`;
+            
+            if (scorePercentage >= 90) {
+                message += `🥇 素晴らしい！世界遺産博士ですね！`;
+            } else if (scorePercentage >= 70) {
+                message += `🥈 よくできました！世界遺産通ですね！`;
+            } else if (scorePercentage >= 50) {
+                message += `🥉 まずまずです！もう少し頑張りましょう！`;
+            } else {
+                message += `📚 世界遺産についてもっと学んでみましょう！`;
+            }
+            
+            questionText.textContent = message;
             heritageImage.src = '';
             heritageImage.alt = '';
             choicesArea.innerHTML = '';
