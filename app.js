@@ -16,15 +16,6 @@ const progressFill = document.getElementById('progress-fill');
 // imageUrls は配列として複数のURLを持つことができ、loadImageWithFallback 関数が順番に試します。
 const worldHeritageData = [
     {
-        name: "万里の長城",
-        country: "中国",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/640px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg",
-            "https://picsum.photos/640/480?random=1" // フォールバック用
-        ],
-        description: "紀元前から建設が始まり、歴代王朝によって増改築が繰り返された巨大な城壁。異民族の侵入を防ぐために築かれました。"
-    },
-    {
         name: "コロッセオ",
         country: "イタリア",
         imageUrls: [
@@ -53,16 +44,6 @@ const worldHeritageData = [
         description: "インカ帝国の空中都市として知られる遺跡。アンデス山脈の標高2,430mの尾根に位置し、その建築技術と景観は世界を魅了します。"
     },
     {
-        name: "ギザのピラミッド",
-        country: "エジプト",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/640px-All_Gizah_Pyramids.jpg",
-            "https://www.his-j.com/theme/world-heritage/asia/india/taj-mahal/img/main01.jpg",
-            "https://picsum.photos/640/480?random=5"
-        ],
-        description: "古代エジプトのファラオの墓として建設された巨大な石造建築物。クフ王のピラミッドは、古代世界の七不思議の一つです。"
-    },
-    {
         name: "グランド・キャニオン",
         country: "アメリカ合衆国",
         imageUrls: [
@@ -71,36 +52,6 @@ const worldHeritageData = [
             "https://picsum.photos/640/480?random=8"
         ],
         description: "コロラド高原を流れるコロラド川が形成した、雄大な渓谷。地球の歴史を物語る地層が露出しており、その壮大な景観は世界中の人々を魅了します。"
-    },
-    {
-        name: "アクロポリス",
-        country: "ギリシャ",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Parthenon_from_Propylaea.jpg/640px-Parthenon_from_Propylaea.jpg",
-            "https://th.bing.com/th/id/R.a49853940e2de637ccb89dcca5a95e5f?rik=XZvlFoEjQYeNoQ&riu=http%3a%2f%2ftraveldigg.com%2fwp-content%2fuploads%2f2016%2f08%2fAcropolis-of-Athens-Photo.jpg&ehk=vV4KR6wvB1K5N2UWUXm1pSWfvrVcJDcLdtW6nsm75FQ%3d&risl=&pid=ImgRaw&r=0",
-            "https://picsum.photos/640/480?random=9"
-        ],
-        description: "アテネの中心部にある小高い丘で、古代ギリシャの代表的な建築物であるパルテノン神殿などが建ち並びます。民主主義発祥の地としても知られています。"
-    },
-    {
-        name: "モン・サン＝ミシェル",
-        country: "フランス",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Mont_Saint-Michel_at_dawn.jpg/640px-Mont_Saint-Michel_at_dawn.jpg",
-            "https://th.bing.com/th/id/R.1c8b4d061e807921f3857defd7ea7513?rik=k5mf%2b%2fjn065bTA&riu=http%3a%2f%2fwadaphoto.jp%2fkikou%2fimages%2fmonsan13l.jpg&ehk=wkepRWFSgqumPGAwMnm8ugN2lBItJ4islOnCqAPGe9o%3d&risl=&pid=ImgRaw&r=0",
-            "https://picsum.photos/640/480?random=10"
-        ],
-        description: "フランス北西部の海岸に浮かぶ岩山に築かれた修道院。潮の満ち引きによって陸と隔絶される神秘的な景観は、「西洋の驚異」と称されます。"
-    },
-    {
-        name: "シドニー・オペラハウス",
-        country: "オーストラリア",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Sydney_Opera_House_-_Dec_2008.jpg/640px-Sydney_Opera_House_-_Dec_2008.jpg",
-            "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/474000/474916-Sydney-Opera-House.jpg",
-            "https://picsum.photos/640/480?random=11"
-        ],
-        description: "シドニーの象徴的な建造物であり、20世紀を代表する建築物の一つ。貝殻のような独特の屋根が特徴で、世界的に有名なコンサートホールです。"
     },
     {
         name: "ケルン大聖堂",
