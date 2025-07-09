@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界遺産クイズ PWA</title>
+    
+    <link rel="manifest" href="data:application/json;base64,ewogICAgIm5hbWUiOiAi5LiW55WM6YGa55Sj44Kv44Kk44K6IFBXQSIsCiAgICAic2hvcnRfbmFtZSI6ICLpgaHkuqnjgq/jgqTjgrAiLAogICAgImRlc2NyaXB0aW9uIjogIuS4lueVjOmBqeeUo+OBruWGmeecn+OCkuimi+OBpuWbveWQjeOCkuW9k+OBpuOCi+OCr+OCpOOCuuOCouODl+ODquOBp+OBmeOAgiIsCiAgICAic3RhcnRfdXJsIjogIi8iLAogICAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZWVmMmY3IiwKICAgICJ0aGVtZV9jb2xvciI6ICIjMDA1NmIzIiwKICAgICJpY29ucyI6IFsKICAgICAgICB7CiAgICAgICAgICAgICJzcmMiOiAiaHR0cHM6Ly9wbGFjZWhvb Gott die Weltmeere zu segeln. co/72x72/0056b3/ffffff?text=Quiz",
+                "sizes": "72x72",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/96x96/0056b3/ffffff?text=Quiz",
+                "sizes": "96x96",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/128x128/0056b3/ffffff?text=Quiz",
+                "sizes": "128x128",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/144x144/0056b3/ffffff?text=Quiz",
+                "sizes": "144x144",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/152x152/0056b3/ffffff?text=Quiz",
+                "sizes": "152x152",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/192x192/0056b3/ffffff?text=Quiz",
+                "sizes": "192x192",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/384x384/0056b3/ffffff?text=Quiz",
+                "sizes": "384x384",
+                "type": "image/png"
+        },
+        {
+                "src": "https://placehold.co/512x512/0056b3/ffffff?text=Quiz",
+                "sizes": "512x512",
+                "type": "image/png"
+        }
+    ]
+}
+">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #0056b3;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        #quiz-area {
+            margin-bottom: 30px;
+        }
+        
+        #heritage-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        #heritage-image:hover {
+            transform: scale(1.02);
+        }
+        
+        #question-text {
+            font-size: 1.3em;
+            color: #555;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        #choices-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .choice-button {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+            border: 2px solid #dee2e6;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .choice-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .choice-button:hover {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        .choice-button:hover::before {
+            left: 100%;
+        }
+        
+        .choice-button:active {
+            transform: translateY(0);
+        }
+        
+        .choice-button.correct-answer {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border-color: #28a745;
+            animation: correctPulse 0.5s ease;
+        }
+        
+        .choice-button.wrong-answer {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+            color: white;
+            border-color: #dc3545;
+            animation: wrongShake 0.5s ease;
+        }
+        
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .choice-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        
+        #feedback-message {
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.2em;
+            min-height: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        #feedback-message.correct {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+        
+        #feedback-message.incorrect {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+        
+        #explanation-area {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 1px solid #dee2e6;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #explanation-area h2 {
+            color: #0056b3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #heritage-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        #heritage-description {
+            font-size: 1em;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .action-button {
+            padding: 12px 30px;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .action-button:hover::before {
+            left: 100%;
+        }
+        
+        #next-question {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        
+        #next-question:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
+        }
+        
+        #restart-button {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        #restart-button:hover {
+            background: linear-gradient(135deg, #20c997, #17a2b8);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(32, 201, 151, 0.3);
+        }
+        
+        .score-display {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #0056b3;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 10px;
+            border: 2px solid #2196f3;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            #choices-area {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        .final-score {
+            font-size: 2em;
+            font-weight: bold;
+            color: #0056b3;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .achievement-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .badge-gold {
+            background: linear-gradient(135deg, #ffd700, #ffb700);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .badge-silver {
+            background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+            box-shadow: 0 5px 15px rgba(192, 192, 192, 0.3);
+        }
+        
+        .badge-bronze {
+            background: linear-gradient(135deg, #cd7f32, #b8860b);
+            box-shadow: 0 5px 15px rgba(205, 127, 50, 0.3);
+        }
+        
+        .badge-normal {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #0056b3;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ 世界遺産クイズ</h1>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        
+        <div id="quiz-area">
+            <img id="heritage-image" src="" alt="世界遺産">
+            <p id="question-text"></p>
+        </div>
+        
+        <div id="choices-area"></div>
+        
+        <div id="feedback-message"></div>
+        
+        <div id="explanation-area" style="display: none;">
+            <h2>📚 解説</h2>
+            <p id="heritage-name"></p>
+            <p id="heritage-description"></p>
+        </div>
+        
+        <div class="button-group">
+            <button id="next-question" class="action-button" style="display: none;">次の問題</button>
+            <button id="restart-button" class="action-button" style="display: none;">もう一度</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM要素の取得
+        const heritageImage = document.getElementById('heritage-image');
+        const questionText = document.getElementById('question-text');
+        const choicesArea = document.getElementById('choices-area');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const explanationArea = document.getElementById('explanation-area');
+        const heritageName = document.getElementById('heritage-name');
+        const heritageDescription = document.getElementById('heritage-description');
+        const nextButton = document.getElementById('next-question');
+        const restartButton = document.getElementById('restart-button');
+        const progressFill = document.getElementById('progress-fill');
+
+        // 世界遺産のデータ
+        const worldHeritageData = [
+            {
+                name: "コロッセオ",
+                country: "イタリア",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/640px-Colosseo_2020.jpg",
+                    "https://picsum.photos/640/480?random=2"
+                ],
+                description: "古代ローマ時代に建設された円形闘技場。剣闘士の試合や公開処刑などが行われ、ローマ帝国の威厳を象徴しています。"
+            },
+            {
+                name: "マチュ・ピチュ",
+                country: "ペルー",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/640px-Machu_Picchu%2C_Peru.jpg",
+                    "https://picsum.photos/640/480?random=4"
+                ],
+                description: "インカ帝国の空中都市として知られる遺跡。アンデス山脈の標高2,430mの尾根に位置し、その建築技術と景観は世界を魅了します。"
+            },
+            {
+                name: "ギザのピラミッド",
+                country: "エジプト",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/640px-All_Gizah_Pyramids.jpg",
+                    "https://picsum.photos/640/480?random=5"
+                ],
+                description: "古代エジプトのファラオの墓として建設された巨大な石造建築物。クフ王のピラミッドは、古代世界の七不思議の一つです。"
+            },
+            {
+                name: "グランド・キャニオン",
+                country: "アメリカ合衆国",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Grand_Canyon_from_Mather_Point.jpg/640px-Grand_Canyon_from_Mather_Point.jpg",
+                    "https://picsum.photos/640/480?random=6"
+                ],
+                description: "コロラド高原を流れるコロラド川が形成した、雄大な渓谷。地球の歴史を物語る地層が露出しており、その壮大な景観は世界中の人々を魅了します。"
+            },
+            {
+                name: "モン・サン＝ミシェル",
+                country: "フランス",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Mont_Saint-Michel_at_dawn.jpg/640px-Mont_Saint-Michel_at_dawn.jpg",
+                    "https://picsum.photos/640/480?random=8"
+                ],
+                description: "フランス北西部の海岸に浮かぶ岩山に築かれた修道院。潮の満ち引きによって陸と隔絶される神秘的な景観は、「西洋の驚異」と称されます。"
+            },
+            {
+                name: "ケルン大聖堂",
+                country: "ドイツ",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Cologne_Cathedral_from_the_Rhine.jpg/640px-Cologne_Cathedral_from_the_Rhine.jpg",
+                    "https://picsum.photos/640/480?random=10"
+                ],
+                description: "ドイツのケルンにあるゴシック様式の大聖堂。その壮麗な建築と、聖遺物を納めるために建設された歴史的背景を持つ、ドイツを代表する建築物です。"
+            },
+            {
+                name: "イグアス国立公園",
+                country: "ブラジル",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Iguazu_Falls_from_Brazil_side.jpg/640px-Iguazu_Falls_from_Brazil_side.jpg",
+                    "https://picsum.photos/640/480?random=11"
+                ],
+                description: "アルゼンチンとの国境に位置する世界最大級の滝、イグアスの滝を中心とした国立公園。その圧倒的な水量と雄大な自然は圧巻です。"
+            },
+            {
+                name: "サグラダ・ファミリア",
+                country: "スペイン",
+                imageUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sagrada_Familia_from_the_south_2019_01.jpg/640px-Sagrada_Familia_from_the_south_2019_01.jpg",
+                    "https://picsum.photos/640/480?random=12"
+                ],
+                description: "アントニ・ガウディが設計した未完の教会。独特の建築様式と壮大なスケールで知られ、バルセロナの象徴です。"
+            }
+        ];
+
+        // ゲーム設定
+        const QUIZ_LIMIT = 3; // ここを10から3に修正しました
+        let currentQuestionCount = 0;
+        let availableHeritageIndices = [];
+        let currentHeritage = null;
+        let correctAnswers = 0;
+
+        // 配列をシャッフルする関数
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // プログレスバーを更新
+        function updateProgress() {
+            const progress = (currentQuestionCount / QUIZ_LIMIT) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+
+        // ランダムな世界遺産を取得（選択肢生成用）
+        function getRandomHeritage() {
+            return worldHeritageData[Math.floor(Math.random() * worldHeritageData.length)];
+        }
+
+        // クイズを初期化
+        function initializeQuiz() {
+            currentQuestionCount = 0;
+            correctAnswers = 0;
+            availableHeritageIndices = Array.from({ length: worldHeritageData.length }, (_, i) => i);
+            shuffleArray(availableHeritageIndices);
+            updateProgress(); // ここでプログレスバーを初期化
+            generateQuestion();
+            // クイズ開始時にボタンの表示をリセット
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none';
+        }
+
+        // 次の世界遺産を取得
+        function getNextHeritage() {
+            if (availableHeritageIndices.length === 0) {
+                // 全て使い切った場合、再度シャッフル
+                availableHeritageIndices = Array.from({ length: worldHeritageData.length }, (_, i) => i);
+                shuffleArray(availableHeritageIndices);
+            }
+            const nextIndex = availableHeritageIndices.pop();
+            return worldHeritageData[nextIndex];
+        }
+
+        // 国名の選択肢を生成
+        function generateCountryChoices(correctCountry) {
+            let choices = [correctCountry];
+            while (choices.length < 4) {
+                const randomHeritage = getRandomHeritage();
+                const choiceToAdd = randomHeritage.country;
+                if (!choices.includes(choiceToAdd)) {
+                    choices.push(choiceToAdd);
+                }
+            }
+            shuffleArray(choices);
+            return choices;
+        }
+
+        // 画像を読み込む関数（フォールバック付き）
+        function loadImageWithFallback(imageUrls, imageElement) {
+            let currentIndex = 0;
+            
+            function tryLoadImage() {
+                if (currentIndex >= imageUrls.length) {
+                    imageElement.src = 'https://via.placeholder.com/640x480/667eea/ffffff?text=世界遺産'; // フォールバック画像
+                    imageElement.alt = '画像を読み込めませんでした';
+                    return;
+                }
+                
+                const img = new Image();
+                img.onload = function() {
+                    imageElement.src = imageUrls[currentIndex];
+                    imageElement.alt = currentHeritage.name;
+                };
+                img.onerror = function() {
+                    console.warn(`画像のロードに失敗しました: ${imageUrls[currentIndex]}. 次のURLを試します。`);
+                    currentIndex++;
+                    tryLoadImage(); // 次のURLを試す
+                };
+                img.src = imageUrls[currentIndex];
+            }
+            
+            tryLoadImage();
+        }
+
+        // 新しい問題を生成
+        function generateQuestion() {
+            if (currentQuestionCount >= QUIZ_LIMIT) {
+                endQuiz();
+                return;
+            }
+
+            currentQuestionCount++;
+            updateProgress(); // プログレスバーを更新
+
+            feedbackMessage.textContent = '';
+            feedbackMessage.className = '';
+            choicesArea.innerHTML = '';
+            explanationArea.style.display = 'none';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none'; // 問題中は再開ボタンを隠す
+
+            currentHeritage = getNextHeritage();
+            if (!currentHeritage) {
+                questionText.textContent = '問題の生成に失敗しました。';
+                return;
+            }
+
+            questionText.textContent = `第 ${currentQuestionCount} 問: この世界遺産がある国はどこ？`;
+            
+            // 画像を読み込み（複数のURLを試す）
+            loadImageWithFallback(currentHeritage.imageUrls, heritageImage);
+
+            const choices = generateCountryChoices(currentHeritage.country);
+
+            choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.textContent = choice;
+                button.classList.add('choice-button');
+                button.addEventListener('click', () => checkAnswer(choice, currentHeritage.country, button));
+                choicesArea.appendChild(button);
+            });
+        }
+
+        // 解答をチェック
+        function checkAnswer(selectedAnswer, correctAnswer, clickedButton) {
+            Array.from(choicesArea.children).forEach(button => {
+                button.disabled = true; // 全てのボタンを無効化
+                if (button.textContent === correctAnswer) {
+                    button.classList.add('correct-answer'); // 正解のボタンを緑色にする
+                }
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                correctAnswers++; // 正解数をインクリメント
+                feedbackMessage.textContent = '🎉 正解です！素晴らしい！';
+                feedbackMessage.classList.add('correct');
+                clickedButton.classList.add('correct-answer');
+            } else {
+                feedbackMessage.textContent = `残念、不正解です。正解は「${correctAnswer}」でした。`;
+                feedbackMessage.classList.add('incorrect');
+                clickedButton.classList.add('wrong-answer');
+            }
+
+            heritageName.textContent = currentHeritage.name;
+            heritageDescription.textContent = currentHeritage.description;
+            explanationArea.style.display = 'block';
+
+            nextButton.style.display = 'inline-block'; // 次の質問ボタンを表示
+            nextButton.textContent = (currentQuestionCount < QUIZ_LIMIT) ? '次の問題' : 'クイズ終了';
+        }
+
+        // クイズを終了
+        function endQuiz() {
+            const scorePercentage = Math.round((correctAnswers / QUIZ_LIMIT) * 100);
+            let message = `<div class="final-score">🎉 クイズ終了！お疲れ様でした！<br></div>`;
+            message += `<div class="final-score">📊 結果: ${correctAnswers}/${QUIZ_LIMIT}問正解 (${scorePercentage}%)</div>`;
+            
+            let achievementBadgeClass = 'badge-normal';
+            let achievementMessage = '📚 世界遺産についてもっと学んでみましょう！';
+
+            if (scorePercentage === 100) { // 3問中3問正解の場合
+                achievementBadgeClass = 'badge-gold';
+                achievementMessage = `🥇 素晴らしい！世界遺産博士ですね！`;
+            } else if (scorePercentage >= 66) { // 3問中2問正解の場合
+                achievementBadgeClass = 'badge-silver';
+                achievementMessage = `🥈 よくできました！世界遺産通ですね！`;
+            } else if (scorePercentage >= 33) { // 3問中1問正解の場合
+                achievementBadgeClass = 'badge-bronze';
+                achievementMessage = `🥉 まずまずです！もう少し頑張りましょう！`;
+            } 
+            
+            message += `<div class="achievement-badge ${achievementBadgeClass}">${achievementMessage}</div>`;
+
+            questionText.innerHTML = message;
+            heritageImage.src = '';
+            heritageImage.alt = '';
+            choicesArea.innerHTML = '';
+            feedbackMessage.textContent = '';
+            explanationArea.style.display = 'none';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'inline-block'; // クイズ終了時に再開ボタンを表示
+        }
+
+        // イベントリスナーの設定
+        nextButton.addEventListener('click', generateQuestion);
+        restartButton.addEventListener('click', initializeQuiz);
+
+        // ページ読み込み時にクイズを初期化
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
+
+        // Service Worker の登録（簡略化版）
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE_NAME = 'world-heritage-quiz-v1';
+                    const urlsToCache = [
+                        '/',
+                        '/index.html'
+                    ];
+
+                    self.addEventListener('install', (event) => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then((cache) => {
+                                    return cache.addAll(urlsToCache);
+                                })
+                        );
+                    });
+
+                    self.addEventListener('fetch', (event) => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then((response) => {
+                                    return response || fetch(event.request);
+                                })
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then((registration) => {
+                        console.log('Service Worker 登録成功:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker 登録失敗:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
