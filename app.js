@@ -16,15 +16,6 @@ const progressFill = document.getElementById('progress-fill');
 // imageUrls は配列として複数のURLを持つことができ、loadImageWithFallback 関数が順番に試します。
 const worldHeritageData = [
     {
-        name: "万里の長城",
-        country: "中国",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/640px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg",
-            "https://picsum.photos/640/480?random=1" // フォールバック用
-        ],
-        description: "紀元前から建設が始まり、歴代王朝によって増改築が繰り返された巨大な城壁。異民族の侵入を防ぐために築かれました。"
-    },
-    {
         name: "コロッセオ",
         country: "イタリア",
         imageUrls: [
@@ -32,16 +23,6 @@ const worldHeritageData = [
             "https://picsum.photos/640/480?random=2"
         ],
         description: "古代ローマ時代に建設された円形闘技場。剣闘士の試合や公開処刑などが行われ、ローマ帝国の威厳を象徴しています。"
-    },
-    {
-        name: "タージ・マハル",
-        country: "インド",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Taj_Mahal%2C_Agra%2C_India_-_Diliff.jpg/640px-Taj_Mahal%2C_Agra%2C_India_-_Diliff.jpg",
-            "https://www.his-j.com/theme/world-heritage/asia/india/taj-mahal/img/main02.jpg",
-            "https://picsum.photos/640/480?random=3"
-        ],
-        description: "ムガル帝国第5代皇帝シャー・ジャハーンが、愛妃ムムターズ・マハルのために建設した白亜の霊廟。イスラム建築の最高傑作と評されます。"
     },
     {
         name: "マチュ・ピチュ",
@@ -73,16 +54,6 @@ const worldHeritageData = [
         description: "コロラド高原を流れるコロラド川が形成した、雄大な渓谷。地球の歴史を物語る地層が露出しており、その壮大な景観は世界中の人々を魅了します。"
     },
     {
-        name: "アクロポリス",
-        country: "ギリシャ",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Parthenon_from_Propylaea.jpg/640px-Parthenon_from_Propylaea.jpg",
-            "https://th.bing.com/th/id/R.a49853940e2de637ccb89dcca5a95e5f?rik=XZvlFoEjQYeNoQ&riu=http%3a%2f%2ftraveldigg.com%2fwp-content%2fuploads%2f2016%2f08%2fAcropolis-of-Athens-Photo.jpg&ehk=vV4KR6wvB1K5N2UWUXm1pSWfvrVcJDcLdtW6nsm75FQ%3d&risl=&pid=ImgRaw&r=0",
-            "https://picsum.photos/640/480?random=9"
-        ],
-        description: "アテネの中心部にある小高い丘で、古代ギリシャの代表的な建築物であるパルテノン神殿などが建ち並びます。民主主義発祥の地としても知られています。"
-    },
-    {
         name: "モン・サン＝ミシェル",
         country: "フランス",
         imageUrls: [
@@ -91,16 +62,6 @@ const worldHeritageData = [
             "https://picsum.photos/640/480?random=10"
         ],
         description: "フランス北西部の海岸に浮かぶ岩山に築かれた修道院。潮の満ち引きによって陸と隔絶される神秘的な景観は、「西洋の驚異」と称されます。"
-    },
-    {
-        name: "シドニー・オペラハウス",
-        country: "オーストラリア",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Sydney_Opera_House_-_Dec_2008.jpg/640px-Sydney_Opera_House_-_Dec_2008.jpg",
-            "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/474000/474916-Sydney-Opera-House.jpg",
-            "https://picsum.photos/640/480?random=11"
-        ],
-        description: "シドニーの象徴的な建造物であり、20世紀を代表する建築物の一つ。貝殻のような独特の屋根が特徴で、世界的に有名なコンサートホールです。"
     },
     {
         name: "ケルン大聖堂",
@@ -131,16 +92,6 @@ const worldHeritageData = [
             "https://picsum.photos/640/480?random=20"
         ],
         description: "アントニ・ガウディが設計した未完の教会。独特の建築様式と壮大なスケールで知られ、バルセロナの象徴です。"
-    },
-    {
-        name: "イースター島のラパ・ヌイ国立公園",
-        country: "チリ",
-        imageUrls: [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Moai_Rano_Raraku.jpg/640px-Moai_Rano_Raraku.jpg",
-            "https://tvmatome.net/wp-content/uploads/2015/12/moai.jpg",
-            "https://picsum.photos/640/480?random=22"
-        ],
-        description: "太平洋に浮かぶ孤島に点在する巨大な石像「モアイ」で知られる国立公園。その起源や建造方法は未だ多くの謎に包まれています。"
     }
 ];
 
